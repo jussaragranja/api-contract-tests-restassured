@@ -110,23 +110,14 @@ Usado nos schemas para garantir contrato rígido.
 
 ------------------------------------------------------------------------
 
-## ❌ Testes negativos
-
-Exemplo incluído:
-
--   JSON inválido
--   Campos extras
--   Formato incorreto
-
-------------------------------------------------------------------------
-
 ## 📌 Objetivo do projeto
 
-Este projeto serve como:
+Criei esse projeto com o intuito de servir como:
 
 -   Template open source
 -   Guia para iniciantes
--   Base real para times de QA
+-   Referência de boas práticas
+-   Base para projetos reais de testes de contrato
 
 ------------------------------------------------------------------------
 
@@ -140,9 +131,9 @@ mvn test
 
 ## 💡 Dica final
 
-Contrato não é só schema.
+Muito importante pontuar que contrato não é só schema.
 
-Testa também:
+É necessário validar também:
 
 -   Headers
 -   Status

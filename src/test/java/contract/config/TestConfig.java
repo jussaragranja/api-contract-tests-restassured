@@ -4,7 +4,11 @@ import org.yaml.snakeyaml.Yaml;
 
 import java.io.InputStream;
 import java.util.Map;
+import java.util.stream.Collectors;
 
+/**
+ * Carrega configurações por ambiente (dev, qa, prod).
+ */
 public final class TestConfig {
 
     public record ApiConfig(String baseUri, Map<String, String> defaultHeaders) {}
@@ -52,11 +56,17 @@ public final class TestConfig {
             throw new IllegalStateException("Missing api.baseUri");
         }
 
-        Map<String, String> headers = (Map<String, String>) apiMap.get("defaultHeaders");
+        Object headersObj = apiMap.get("defaultHeaders");
 
-        return new ApiConfig(
-                baseUri,
-                headers == null ? Map.of() : Map.copyOf(headers)
-        );
+        Map<String, String> headers =
+                headersObj instanceof Map<?, ?> raw
+                        ? raw.entrySet().stream()
+                        .collect(Collectors.toMap(
+                                e -> e.getKey().toString(),
+                                e -> e.getValue().toString()
+                        ))
+                        : Map.of();
+
+        return new ApiConfig(baseUri, Map.copyOf(headers));
     }
 }
