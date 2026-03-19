@@ -1,0 +1,4 @@
+api:
+  baseUri: "https://wizard-world-api.herokuapp.com"
+  defaultHeaders:
+    accept: "application/json"
